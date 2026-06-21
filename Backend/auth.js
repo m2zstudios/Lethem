@@ -107,7 +107,7 @@ async function syncAuthUser(claims) {
 
 async function ensureDefaultOrganization(user) {
   const { rows: existing } = await query(
-    `SELECT o.id, o.name, o.slug, om.role
+    `SELECT o.id, o.name, o.slug, o.plan, o.subscription_status, o.razorpay_subscription_id, om.role
      FROM organizations o
      JOIN organization_members om ON om.organization_id = o.id
      WHERE om.user_id = $1
