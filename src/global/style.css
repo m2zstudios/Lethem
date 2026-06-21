@@ -2217,8 +2217,8 @@ kbd{
 .user-menu-panel{z-index:9999}
 .app-shell-header{z-index:120}
 .page.active,.page-transition{position:relative;z-index:1}
-.app.account-mode{grid-template-columns:1fr}
-.app.account-mode .main{grid-column:1 / -1;max-width:1240px;width:100%;margin:0 auto}
+.app.account-mode{grid-template-columns:var(--console-sidebar-width) minmax(0,1fr)}
+.app.account-mode .main{grid-column:2;max-width:none;width:100%;margin:0}
 .account-billing-page{padding:32px 36px}
 .billing-hero{padding:28px;border:1px solid rgba(255,255,255,.1);border-radius:24px;background:radial-gradient(circle at top left,rgba(124,107,255,.24),transparent 42%),linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02))}
 .eyebrow{display:inline-flex;margin-bottom:8px;color:#a594ff;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
@@ -2247,7 +2247,7 @@ kbd{
 .sidebar .nav::-webkit-scrollbar-thumb,.mobile-drawer-list::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--accent),#a594ff);border:2px solid rgba(9,11,22,.95);border-radius:999px}
 .sidebar .nav::-webkit-scrollbar-thumb:hover,.mobile-drawer-list::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#a594ff,var(--accent2))}
 .app-shell-header,.user-menu{position:relative;z-index:10000}.user-menu-panel{z-index:10001}.page.active,.page-transition{z-index:0}
-.app.account-mode .main{max-width:none;margin:0;width:100%}.app.account-mode .page-transition{width:100%}.account-billing-page{width:100%;max-width:none}.billing-back{align-self:flex-start;margin-bottom:4px}
+.app.account-mode .main{grid-column:2;max-width:none;margin:0;width:100%}.app.account-mode .page-transition{width:100%}.account-billing-page{width:100%;max-width:none}.billing-back{align-self:flex-start;margin-bottom:4px}
 .danger-page{display:flex!important;flex-direction:column;gap:16px}.danger-action-card{display:flex;align-items:center;justify-content:space-between;gap:18px;border-color:rgba(255,82,82,.24)}.danger-action-card h2{margin:0 0 6px}.danger-action-card p{margin:0;color:var(--muted);line-height:1.5}.danger-action-card input{margin-top:12px;max-width:360px}.danger-action-card-critical{background:linear-gradient(135deg,rgba(255,82,82,.13),rgba(255,255,255,.03))}@media (max-width:720px){.danger-action-card{align-items:stretch;flex-direction:column}.danger-action-card .btn{width:100%;justify-content:center}}
 
 /* Public marketing + Razorpay verification pages */
@@ -2268,3 +2268,121 @@ kbd{
 .app-shell-desktop{grid-template-columns:var(--console-sidebar-width) minmax(0,1fr) auto}.app-shell-header .app-shell-logo{width:var(--console-sidebar-width);box-sizing:border-box}.app-shell-actions{position:relative;z-index:200001;overflow:visible}.user-menu{z-index:200002}.user-menu-panel{position:fixed;top:54px;right:24px;z-index:2147483000;isolation:isolate}.page.active,.page-transition{z-index:auto!important}.main{height:calc(100dvh - var(--console-header-height));min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}.page.active{min-height:100%;overflow:visible}.sidebar{position:sticky;top:var(--console-header-height);height:calc(100dvh - var(--console-header-height));min-height:0;overflow:hidden;z-index:120000}.sidebar .nav{min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}.mobile-drawer{display:flex;flex-direction:column;min-height:0}.mobile-drawer-list{min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-right:4px}.danger-nav-item{color:#ff9d9d!important;border-color:rgba(255,82,82,.22)!important}.danger-nav-item svg{color:#ff6b6b!important;opacity:.95!important}.danger-nav-item:hover,.danger-nav-item.active{background:linear-gradient(135deg,rgba(255,82,82,.18),rgba(255,82,82,.06))!important;border-color:rgba(255,82,82,.55)!important;box-shadow:0 10px 28px rgba(255,82,82,.12)}
 .danger-page{gap:20px}.danger-page .page-header{padding:22px;border:1px solid rgba(255,82,82,.25);border-radius:22px;background:radial-gradient(circle at top left,rgba(255,82,82,.22),transparent 48%),linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,82,82,.04))}.danger-page .page-title{color:#ffd1d1}.danger-action-card{position:relative;overflow:hidden;padding:24px;border:1px solid rgba(255,82,82,.32)!important;background:linear-gradient(135deg,rgba(45,18,24,.96),rgba(15,17,28,.96))!important}.danger-action-card::before{content:'';position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,#ff5252,#ffb86b);opacity:.9}.danger-action-card h2{color:#fff;font-size:18px}.danger-action-card-critical{border-color:rgba(255,82,82,.58)!important;box-shadow:0 18px 60px rgba(255,82,82,.12)}.danger-action-card input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,82,82,.34);border-radius:12px;color:var(--text);padding:11px 12px;outline:none}.danger-action-card input:focus{border-color:#ff7777;box-shadow:0 0 0 3px rgba(255,82,82,.14)}
 @media (max-width:900px){.app{grid-template-columns:1fr!important;grid-template-rows:var(--console-mobile-header-height) minmax(0,1fr)}.app-shell-header.console-header{min-height:var(--console-mobile-header-height);z-index:200000}.main{grid-column:1;height:calc(100dvh - var(--console-mobile-header-height))}.mobile-drawer-backdrop.open{position:fixed;top:var(--console-mobile-header-height);right:0;bottom:0;left:0;z-index:150000}.mobile-drawer{height:calc(100dvh - var(--console-mobile-header-height));max-height:calc(100dvh - var(--console-mobile-header-height));overflow:hidden}.mobile-drawer-list{flex:1}.sidebar{display:none}.user-menu-panel{right:12px;top:52px}}
+
+/* Final console shell alignment and danger-zone polish */
+:root{
+  --console-sidebar-width:240px;
+}
+.app-shell-desktop{
+  grid-template-columns:var(--console-sidebar-width) minmax(0,1fr) max-content;
+}
+.sidebar,
+.app-shell-header .app-shell-logo{
+  width:var(--console-sidebar-width);
+}
+.app-shell-header .app-shell-logo{
+  min-width:var(--console-sidebar-width);
+  max-width:var(--console-sidebar-width);
+  padding-inline:22px;
+  overflow:hidden;
+}
+.app-shell-actions,
+.user-menu,
+.user-menu-trigger{
+  isolation:isolate;
+}
+.user-menu-panel{
+  position:fixed!important;
+  top:calc(var(--console-header-height) - 10px)!important;
+  right:24px!important;
+  z-index:2147483647!important;
+  pointer-events:auto;
+  border-color:rgba(255,255,255,.18);
+  background:linear-gradient(180deg,rgba(19,23,41,.99),rgba(10,13,25,.99));
+  backdrop-filter:blur(18px) saturate(1.15);
+  -webkit-backdrop-filter:blur(18px) saturate(1.15);
+}
+.main,
+.page.active,
+.page-transition{
+  isolation:auto;
+}
+.danger-nav-item{
+  position:relative;
+  overflow:hidden;
+  color:#ffb3b3!important;
+  border:1px solid rgba(255,82,82,.24)!important;
+  background:rgba(255,82,82,.035)!important;
+}
+.danger-nav-item::before{
+  content:'';
+  position:absolute;
+  inset:7px auto 7px 0;
+  width:3px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#ff5252,#ffb86b);
+  opacity:.72;
+}
+.danger-nav-item:hover,
+.danger-nav-item.active{
+  color:#ffe2e2!important;
+  background:linear-gradient(135deg,rgba(255,82,82,.24),rgba(255,184,107,.08))!important;
+  transform:translateX(2px);
+}
+.danger-page .page-header{
+  box-shadow:0 22px 70px rgba(255,82,82,.08), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.danger-action-card{
+  align-items:flex-start;
+  box-shadow:0 18px 55px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.07);
+}
+.danger-action-card p strong{
+  color:#ffd1d1;
+}
+.danger-action-card .btn-danger{
+  border-color:rgba(255,82,82,.44);
+  background:rgba(255,82,82,.08);
+  box-shadow:0 12px 30px rgba(255,82,82,.08);
+}
+.danger-action-card .btn-danger:not(:disabled):hover{
+  background:linear-gradient(135deg,rgba(255,82,82,.26),rgba(255,184,107,.10));
+  border-color:rgba(255,116,116,.72);
+}
+@media (max-width:900px){
+  :root{--console-sidebar-width:220px;}
+  .app-shell-header .app-shell-logo{display:none;}
+  .user-menu-panel{top:52px!important;right:12px!important;}
+}
+
+/* Body-level user menu overlay: rendered through a portal so sticky headers/pages cannot clip it. */
+.user-menu-panel-overlay,
+.user-menu-panel-overlay.open{
+  position:fixed!important;
+  display:flex!important;
+  flex-direction:column;
+  gap:4px;
+  min-width:240px;
+  max-width:min(320px,calc(100vw - 24px));
+  max-height:calc(100dvh - 24px);
+  overflow-y:auto;
+  z-index:2147483647!important;
+  transform:translateZ(0);
+  pointer-events:auto;
+}
+.user-menu-panel-overlay::before{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  pointer-events:none;
+  box-shadow:0 0 0 1px rgba(124,107,255,.18),0 24px 70px rgba(0,0,0,.44);
+}
+.user-menu-trigger[aria-expanded='true']{
+  border-color:rgba(124,107,255,.55);
+  background:rgba(124,107,255,.12);
+}
+
+.account-back-btn,
+.billing-back{
+  margin-bottom:14px;
+}

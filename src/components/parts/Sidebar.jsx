@@ -17,13 +17,28 @@ const mobileItems = [
   ['usage', 'Usage', IconBilling],
 ];
 
-export default function Sidebar({ page, navigate, onBackToConsole, drawerOpen, setDrawerOpen }) {
+const accountSections = [
+  { label: 'Account', items: [['profile', 'Profile', IconUser], ['workspace', 'Workspace Settings', IconSettings], ['subscription', 'Billing', IconBilling], ['docs', 'Documentation', IconLogs]] },
+];
+
+const accountMobileItems = [
+  ['profile', 'Profile', IconUser],
+  ['workspace', 'Workspace', IconSettings],
+  ['subscription', 'Billing', IconBilling],
+  ['docs', 'Docs', IconLogs],
+];
+
+export default function Sidebar({ page, navigate, onBackToConsole, drawerOpen, setDrawerOpen, accountMode = false }) {
   const [collapsed, setCollapsed] = useState(() => ({}));
   const toggleSection = (label) => setCollapsed((v) => ({ ...v, [label]: !v[label] }));
   const go = (next) => {
     navigate(next);
     setDrawerOpen(false);
   };
+
+  const visibleSections = accountMode ? accountSections : sections;
+  const visibleMobileItems = accountMode ? accountMobileItems : mobileItems;
+  const backLabel = accountMode ? 'Back to previous page' : 'Back to console';
 
   const renderItem = ([key, label, Icon], mobile = false) => (
     <button key={key} className={`${mobile ? 'mobile-drawer-item' : 'nav-item'} ${key === 'danger' ? 'danger-nav-item' : ''} ${page === key ? 'active' : ''}`} onClick={() => (mobile ? go(key) : navigate(key))}>
@@ -34,8 +49,8 @@ export default function Sidebar({ page, navigate, onBackToConsole, drawerOpen, s
   return <>
     <aside className='sidebar'>
       <nav className='nav'>
-        {onBackToConsole && <button className='nav-item' onClick={onBackToConsole}><IconArrowLeft /> Back to console</button>}
-        {sections.map((section) => (
+        {onBackToConsole && <button className='nav-item' onClick={onBackToConsole}><IconArrowLeft /> {backLabel}</button>}
+        {visibleSections.map((section) => (
           <div className='nav-section' key={section.label}>
             <button className='nav-label nav-label-button' onClick={() => toggleSection(section.label)} aria-expanded={!collapsed[section.label]}>{section.label}<span>{collapsed[section.label] ? '+' : '−'}</span></button>
             {!collapsed[section.label] && section.items.map((item) => renderItem(item))}
@@ -49,7 +64,8 @@ export default function Sidebar({ page, navigate, onBackToConsole, drawerOpen, s
       <aside className='mobile-drawer'>
         <div className='mobile-drawer-title'>Lethem</div>
         <div className='mobile-drawer-list'>
-          {sections.map((section) => (
+          {onBackToConsole && <button className='mobile-drawer-item' onClick={() => { onBackToConsole(); setDrawerOpen(false); }}><IconArrowLeft /> {backLabel}</button>}
+          {visibleSections.map((section) => (
             <div className='mobile-drawer-section' key={section.label}>
               <button className='nav-label nav-label-button' onClick={() => toggleSection(section.label)} aria-expanded={!collapsed[section.label]}>{section.label}<span>{collapsed[section.label] ? '+' : '−'}</span></button>
               {!collapsed[section.label] && section.items.map((item) => renderItem(item, true))}
@@ -61,7 +77,7 @@ export default function Sidebar({ page, navigate, onBackToConsole, drawerOpen, s
     </div>
 
     <nav className='mobile-tabbar' aria-label='Mobile navigation'>
-      {mobileItems.map(([key, label, Icon]) => <button key={key} className={`mobile-tab ${page === key ? 'active' : ''}`} onClick={() => go(key)}><Icon width={18} height={18} /><span>{label}</span></button>)}
+      {visibleMobileItems.map(([key, label, Icon]) => <button key={key} className={`mobile-tab ${page === key ? 'active' : ''}`} onClick={() => go(key)}><Icon width={18} height={18} /><span>{label}</span></button>)}
     </nav>
   </>;
 }
