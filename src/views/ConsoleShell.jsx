@@ -60,13 +60,14 @@ export default function ConsoleShell({ go, page, projectSlug, accountMode = fals
           mobileMenuOpen={mobileMenuOpen}
           navigate={navigate}
         />
-        {!accountMode && <Sidebar
+        <Sidebar
           page={page}
           navigate={navigate}
-          onBackToConsole={() => go('/console')}
+          onBackToConsole={accountMode ? goAccountBack : () => go('/console')}
           drawerOpen={mobileMenuOpen}
           setDrawerOpen={setMobileMenuOpen}
-        />}
+          accountMode={accountMode}
+        />
         <main className='main'>
           <div key={page} className='page-transition'>
             {PLACEHOLDER_PAGES.has(page) ? (
